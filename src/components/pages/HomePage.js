@@ -4,15 +4,16 @@ import Layout from "../layout/Layout";
 import ProductDisplay from "../ProductDisplay";
 
 function HomePage(props) {
-  const { user, shoppingCart, setShoppingCart } = props;
+  const { user, setUser, shoppingCart, setShoppingCart } = props;
 
   return (
-    <Layout user={user}>
+    <Layout user={user} shoppingCart={shoppingCart}>
       <Box display="flex" flexDirection="column" alignItems="center">
         {productList.map((product) => (
           <Box mb={6} key={product.id}>
             <ProductDisplay
               user={user}
+              setUser={setUser}
               productData={product}
               shoppingCart={shoppingCart}
               setShoppingCart={setShoppingCart}

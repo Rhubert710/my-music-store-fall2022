@@ -8,6 +8,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Avatar } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+// import { ShoppingCart } from "@mui/icons-material";
 
 export default function MenuAppBar(props) {
   const { user } = props;
@@ -21,7 +22,7 @@ export default function MenuAppBar(props) {
             variant="h6"
             fontWeight="bold"
             component="div"
-            sx={{ flexGrow: 1 }}
+            sx={{ flexGrow: 1, cursor: 'pointer' }}
             onClick={() => navigate("/")}
           >
             MyMusicStore.com
@@ -54,6 +55,7 @@ export default function MenuAppBar(props) {
             >
               <ShoppingCartIcon />
             </IconButton>
+            <div>{user ? user.cartCount : '0'} items in cart</div>
           </div>
         </Toolbar>
       </AppBar>

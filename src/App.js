@@ -19,6 +19,7 @@ function App() {
             element={
               <HomePage
                 user={user}
+                setUser={setUser}
                 shoppingCart={shoppingCart}
                 setShoppingCart={setShoppingCart}
               />
@@ -33,6 +34,7 @@ function App() {
             element={
               <CartPage
                 user={user}
+                setUser={setUser}
                 shoppingCart={shoppingCart}
                 setShoppingCart={setShoppingCart}
               />

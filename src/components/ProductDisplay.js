@@ -9,9 +9,10 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+//
 
 function ProductDisplay(props) {
-  const { user, productData, shoppingCart, setShoppingCart } = props;
+  const { user, setUser, productData, shoppingCart, setShoppingCart } = props;
   const navigate = useNavigate();
 
   const addToCart = (productToAdd) => {
@@ -25,8 +26,10 @@ function ProductDisplay(props) {
           return item;
         });
         setShoppingCart(updatedCart);
+        setUser({ ...user, cartCount: user.cartCount + 1 });
       } else {
         setShoppingCart([...shoppingCart, { ...productToAdd, qty: 1 }]);
+        setUser({ ...user, cartCount: user.cartCount + 1 });
       }
     } else navigate("/sign-in");
   };
@@ -49,7 +52,7 @@ function ProductDisplay(props) {
       </CardContent>
       <CardActions disableSpacing>
         <Box display="flex" justifyContent="space-between" width={1}>
-          <Button onClick={() => addToCart(productData)}>Add to cart</Button>
+          <Button onClick={() => addToCart(productData)}> Add to cart</Button>
           <IconButton aria-label="add to favorites">
             <FavoriteIcon />
           </IconButton>

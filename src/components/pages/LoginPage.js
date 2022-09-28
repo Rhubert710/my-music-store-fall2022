@@ -29,7 +29,7 @@ function LoginPage(props) {
             />
             <Button
               onClick={() => {
-                setUser({ ...sampleUserData });
+                setUser({ ...sampleUserData, cartCount: 0 });
                 navigate("/");
               }}
             >

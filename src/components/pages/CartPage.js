@@ -5,7 +5,7 @@ import CartItem from "../CartItem";
 import Layout from "../layout/Layout";
 
 function CartPage(props) {
-  const { user, shoppingCart, setShoppingCart } = props;
+  const { user, setUser, shoppingCart, setShoppingCart } = props;
   const navigate = useNavigate();
 
   const total = shoppingCart.reduce(
@@ -24,6 +24,7 @@ function CartPage(props) {
       })
       .filter((item) => item.qty !== 0);
     setShoppingCart([...updatedCart]);
+    if (user.cartCount !== 0) setUser({ ...user, cartCount: user.cartCount - 1 });
   };
 
   return (
@@ -54,7 +55,7 @@ function CartPage(props) {
           variant="contained"
           startIcon={<Delete />}
           sx={{ width: "200px" }}
-          onClick={() => setShoppingCart([])}
+          onClick={() => { setShoppingCart([]); setUser({ ...user, cartCount: 0 }); }}
         >
           <Box>Empty Cart</Box>
         </Button>
