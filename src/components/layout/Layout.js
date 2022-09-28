@@ -3,12 +3,12 @@ import Footer from "./Footer";
 import Header from "./Header";
 
 function Layout(props) {
-  const { children, user, shoppingCart } = props;
+  const { children } = props;
 
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <Box>
-        <Header user={user} shoppingCart={shoppingCart} />
+        <Header />
       </Box>
       <Box flexGrow={1} py={6}>
         {children}

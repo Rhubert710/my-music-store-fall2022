@@ -9,10 +9,13 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-//
+import { useUser } from "../contexts/userContext";
+import { useCart } from "../contexts/cartContext";
 
 function ProductDisplay(props) {
-  const { user, setUser, productData, shoppingCart, setShoppingCart } = props;
+  const { productData } = props;
+  const { shoppingCart, setShoppingCart } = useCart();
+  const { user, setUser } = useUser();
   const navigate = useNavigate();
 
   const addToCart = (productToAdd) => {
@@ -52,7 +55,7 @@ function ProductDisplay(props) {
       </CardContent>
       <CardActions disableSpacing>
         <Box display="flex" justifyContent="space-between" width={1}>
-          <Button onClick={() => addToCart(productData)}> Add to cart</Button>
+          <Button onClick={() => addToCart(productData)}>Add to cart</Button>
           <IconButton aria-label="add to favorites">
             <FavoriteIcon />
           </IconButton>

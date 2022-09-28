@@ -1,11 +1,14 @@
 import { CreditCard, Delete, Home } from "@mui/icons-material";
 import { Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../contexts/cartContext";
+import { useUser } from "../../contexts/userContext";
 import CartItem from "../CartItem";
 import Layout from "../layout/Layout";
 
-function CartPage(props) {
-  const { user, setUser, shoppingCart, setShoppingCart } = props;
+function CartPage() {
+  const { shoppingCart, setShoppingCart } = useCart();
+  const { user, setUser } = useUser();
   const navigate = useNavigate();
 
   const total = shoppingCart.reduce(
@@ -24,11 +27,11 @@ function CartPage(props) {
       })
       .filter((item) => item.qty !== 0);
     setShoppingCart([...updatedCart]);
-    if (user.cartCount !== 0) setUser({ ...user, cartCount: user.cartCount - 1 });
+    setUser({ ...user, cartCount: user.cartCount - 1 });
   };
 
   return (
-    <Layout user={user}>
+    <Layout>
       <Box
         width={1}
         display="flex"
